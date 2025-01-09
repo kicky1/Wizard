@@ -70,6 +70,13 @@ export const MapComponent = ({
       })
     });
 
+    const mapTarget = initialMap.getTargetElement();
+    if (mapTarget) {
+      mapTarget.style.position = 'relative';
+      mapTarget.style.borderRadius = '0 0 10px 10px';
+      mapTarget.style.overflow = 'hidden';
+    }
+
     setMap(initialMap);
 
     return () => initialMap.setTarget(undefined);
@@ -173,9 +180,9 @@ export const MapComponent = ({
   }, [map, createStyle]);
 
   return (
-    <Card className="relative">
+    <Card className="relative rounded-t-none">
       <CardContent className="p-0">
-        <div ref={mapRef} className="w-full h-96 rounded-lg" />
+        <div ref={mapRef} className="w-full h-96" />
         <MapPopup popupData={popupData} onClose={() => setPopupData(null)} map={map} />
       </CardContent>
     </Card>
